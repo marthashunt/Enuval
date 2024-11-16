@@ -23,7 +23,6 @@
             zoom: 4 // Zoom level to encompass all locations
         });
 
-        // GeoJSON Data for All Stories
         const stories = {
             "type": "FeatureCollection",
             "features": [
@@ -31,11 +30,11 @@
                     "type": "Feature",
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [32.6616, 41.2508] // Safranbolu, Turkey (Rumeysa)
+                        "coordinates": [32.6616, 41.2508]
                     },
                     "properties": {
                         "title": "Rumeysa's Story",
-                        "description": "“With the Enuval team, I had the opportunity to be featured as a Researcher in an article for the first time ever, rather than a patient.”",
+                        "description": "With the Enuval team, I had the opportunity to be featured as a Researcher in an article for the first time ever, rather than a patient.",
                         "link": "https://www.enuval.org/rumeysas-story"
                     }
                 },
@@ -43,7 +42,7 @@
                     "type": "Feature",
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [-73.935242, 40.730610] // New York City, USA (Karlie)
+                        "coordinates": [-73.935242, 40.730610]
                     },
                     "properties": {
                         "title": "Karlie's Story",
@@ -55,7 +54,7 @@
                     "type": "Feature",
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [-118.2437, 34.0522] // Los Angeles, USA (Kelly)
+                        "coordinates": [-118.2437, 34.0522]
                     },
                     "properties": {
                         "title": "Kelly's Story",
@@ -66,7 +65,6 @@
             ]
         };
 
-        // Add Markers to the Map
         stories.features.forEach(function(story) {
             const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
                 <h3>${story.properties.title}</h3>
