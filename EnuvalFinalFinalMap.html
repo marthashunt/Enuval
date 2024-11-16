@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Enuval Stories Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { width: 100%; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        // Add your Mapbox access token
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGhhc2h1bnQiLCJhIjoiY20zZ2xuMWVhMDYxZTJscTI4MTliOGZ1cyJ9.Pm24znSX8e7wAt8cZXzbNA';
+
+        // Initialize the map
+        const map = new mapboxgl.Map({
+            container: 'map', // ID of the container
+            style: 'mapbox://styles/marthashunt/cm3glrgvr008701s12qz97kj6', // Your custom style
+            center: [0, 20], // Adjusted center to show all markers
+            zoom: 2 // Initial zoom level
+        });
+
+        // Stories data as GeoJSON
+        const stories = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [32.66, 41.25] // Rumeysa's exact coordinates
+                    },
+                    "properties": {
+                        "title": "Rumeysa's Story",
+                        "description": "With the Enuval team, I had the opportunity to be featured as a Researcher in an article for the first time ever, rather than a patient.",
+                        "link": "https://www.enuval.org/rumeysas-story"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-73.76, 42.65] // Karlie's exact coordinates
+                    },
+                    "properties": {
+                        "title": "Karlie's Story",
+                        "description": "My current doctors have noted that it would have been beneficial for me to show them past records that I was not able to access.",
+                        "link": "https://www.enuval.org/karlie-s-story"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-71.31, 10.2] // Kelly's exact coordinates
+                    },
+                    "properties": {
+                        "title": "Kelly's Story",
+                        "description": "My parents had to go to the local store and pay for the spinal implants themselves, as patients in many countries in South America are responsible for purchasing their own.",
+                        "link": "https://www.enuval.org/kellys-story"
+                    }
+                }
+            ]
+        };
+
+        // Add popups to the map
+        stories.features.forEach(function(story) {
+            const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+                <h3>${story.properties.title}</h3>
+                <p>${story.properties.description}</p>
+                <a href="${story.properties.link}" target="_blank">Read more</a>
+            `);
+
+            // Attach the popup to a transparent marker
+            new mapboxgl.Marker({ color: 'transparent' })
+                .setLngLat(story.geometry.coordinates)
+                .setPopup(popup)
+                .addTo(map);
+        });
+    </script>
+</body>
+</html>
