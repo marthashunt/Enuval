@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Enuval Stories Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { width: 100%; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        // Add your Mapbox access token
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGhhc2h1bnQiLCJhIjoiY20zZ2xuMWVhMDYxZTJscTI4MTliOGZ1cyJ9.Pm24znSX8e7wAt8cZXzbNA';
+
+        // Initialize the map
+        const map = new mapboxgl.Map({
+            container: 'map', // ID of the container
+            style: 'mapbox://styles/marthashunt/cm3glrgvr008701s12qz97kj6', // Your custom style
+            center: [30, 20], // Adjust center of the map
+            zoom: 2 // Initial zoom level
+        });
+
+        // Stories data as GeoJSON
+        const stories = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [32.6616, 41.2508] // Safranbolu, Turkey
+                    },
+                    "properties": {
+                        "title": "Rumeysa's Story",
+    
